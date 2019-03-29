@@ -4,44 +4,25 @@
 /// @version  0.0
 /// @date Mar 29 2019
 
-#include <vulkan/vulkan.h>
-
+#include <cstdlib>
+#include <functional>
 #include <iostream>
 #include <stdexcept>
-#include <functional>
-#include <cstdlib>
 
-class HelloTriangleApplication {
-	public:
-		void run() {
-			initVulkan();
-			mainLoop();
-			cleanup();
-		}
-
-	private:
-		void initVulkan() {
-
-		}
-
-		void mainLoop() {
-
-		}
-
-		void cleanup() {
-
-		}
-};
+#include "triangle.hpp"
 
 int main() {
-	HelloTriangleApplication app;
+  try {
+		Window window("Triangle App");
+		if (!window.init()) {
+			std::cerr << "Failed to initialize glfw window" << std::endl;
+			return 1;
+		}
 
-	try {
-		app.run();
-	} catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-		return EXIT_FAILURE;
-	}
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+    return EXIT_FAILURE;
+  }
 
-	return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
