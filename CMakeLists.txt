@@ -40,7 +40,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 # Needed so that Vulkan can be found
-set(ENV{VULKAN_SDK} "/home/reinaldo/Documents/vulkan_sdk/1.1.101.0/x86_64")
+set(ENV{VULKAN_SDK} "/home/reinaldo/Documents/vulkan-sdk/1.1.101.0/x86_64")
 
 find_package(RapidJSON REQUIRED)
 
