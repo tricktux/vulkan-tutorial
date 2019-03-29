@@ -27,6 +27,8 @@
 class Vulkan {
   /// Connection between application and Vulkan library
   VkInstance instance;
+  VkApplicationInfo app_info = {};
+  VkInstanceCreateInfo create_info = {};
 
   int get_extensions_info(VkInstanceCreateInfo &create_info);
 

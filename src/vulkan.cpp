@@ -35,8 +35,6 @@ int Vulkan::get_extensions_info(VkInstanceCreateInfo &create_info) {
 
 int Vulkan::create_instance() {
 	VkResult rc;
-	VkApplicationInfo app_info = {};
-	VkInstanceCreateInfo create_info = {};
 
 	app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	app_info.pApplicationName = "Hello Triangle";
