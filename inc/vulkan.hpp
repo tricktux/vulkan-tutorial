@@ -25,12 +25,16 @@
 #include <GLFW/glfw3.h>
 
 class Vulkan {
+	uint32_t glfw_extension_count = 0;
+	const char **glfw_extensions = nullptr;
+
   /// Connection between application and Vulkan library
   VkInstance instance;
   VkApplicationInfo app_info = {};
   VkInstanceCreateInfo create_info = {};
 
-  int get_extensions_info(VkInstanceCreateInfo &create_info);
+
+  void get_extensions_info(VkInstanceCreateInfo &create_info);
 
 public:
   Vulkan() {}

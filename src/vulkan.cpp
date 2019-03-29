@@ -19,18 +19,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "vulkan.hpp"
+#include <iostream>
 
-int Vulkan::get_extensions_info(VkInstanceCreateInfo &create_info) {
-	uint32_t glfw_extension_count = 0;
-	const char **glfw_extensions = nullptr;
-
-	glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_count);
-
-	if ((glfw_extensions == nullptr) || (glfw_extension_count == 0))
-		return -1;
-	create_info.enabledExtensionCount = glfw_extension_count;
-	create_info.ppEnabledExtensionNames = glfw_extensions;
-	return 1;
+// TODO-[RM]-(Fri Mar 29 2019 19:07):
+void Vulkan::get_extensions_info(VkInstanceCreateInfo &create_info) {
 }
 
 int Vulkan::create_instance() {
@@ -46,11 +38,16 @@ int Vulkan::create_instance() {
 	create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	create_info.pApplicationInfo = &app_info;
 
-	if (get_extensions_info(create_info) < 1)
-		return -1;
+	glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_count);
+
+	create_info.enabledExtensionCount = glfw_extension_count;
+	create_info.ppEnabledExtensionNames = glfw_extensions;
+	create_info.enabledLayerCount = 0;
+
 	if ((rc = vkCreateInstance(&create_info, nullptr, &instance)) !=
 			VK_SUCCESS) {
-		return -2;
+		std::cout << "Failed to create instance" << std::endl;
+		return -1;
 	}
 
 	return 1;
