@@ -1,6 +1,6 @@
 # All the source files for the bot.
 file(GLOB SOURCES "main.cpp")
-file(GLOB TRI "triangle.cpp")
+file(GLOB TRI "triangle.cpp" "vulkan.cpp")
 
 include_directories(
 		${CMAKE_SOURCE_DIR}/inc
@@ -28,8 +28,8 @@ target_link_libraries(compiles
 add_executable(triangle_app ${TRI})
 
 target_link_libraries(triangle_app 
-	${GLOG_LIBRARIES}
-	${Vulkan_LIBRARY}
-	glm
-	glfw
+		${GLOG_LIBRARIES}
+		${Vulkan_LIBRARY}
+		glm
+		glfw
 	)

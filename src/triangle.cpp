@@ -24,19 +24,26 @@
 #include <stdexcept>
 
 #include "triangle.hpp"
+#include "vulkan.hpp"
 
 int main() {
   try {
     Window window("Triangle App");
-    if (!window.init()) {
-      std::cerr << "Failed to initialize glfw window" << std::endl;
+    Vulkan vulkan;
+
+    if (vulkan.create_instance() < 1) {
+      std::cout << "Failed to create vulkan instance" << std::endl;
       return 1;
     }
+    if (!window.init()) {
+      std::cerr << "Failed to initialize glfw window" << std::endl;
+      return 2;
+    }
 
-	while (!window.should_close())
-		window.get_poll_events();
+    while (!window.should_close())
+      window.get_poll_events();
 
-	return 0;
+    return 0;
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;

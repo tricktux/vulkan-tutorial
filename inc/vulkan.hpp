@@ -18,3 +18,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef VULKAN_HPP
+#define VULKAN_HPP
+
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+class Vulkan {
+  /// Connection between application and Vulkan library
+  VkInstance instance;
+
+  int get_extensions_info(VkInstanceCreateInfo &create_info);
+
+public:
+  Vulkan() {}
+  ~Vulkan() { vkDestroyInstance(instance, nullptr); }
+
+  int create_instance();
+};
+
+#endif
