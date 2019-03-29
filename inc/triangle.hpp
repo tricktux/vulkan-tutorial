@@ -28,29 +28,24 @@
 /// Wrapper around glfw window
 class Window {
   /// Default window height and width
-  const int HEIGHT = 800;
-  const int WIDTH = 600;
+  const unsigned int HEIGHT = 800;
+  const unsigned int WIDTH = 600;
   const char *TITLE = "Window Title";
 
-  unsigned int _height;
-  unsigned int _width;
-  bool _resizable; /// Defaults to false
-  GLFWwindow *_window;
-  std::string _title;
+  unsigned int _height = {HEIGHT};
+  unsigned int _width = {WIDTH};
+  bool _resizable = {false}; /// Defaults to false
+  GLFWwindow *_window = nullptr;
+  std::string _title = {TITLE};
 
 public:
   /// Default constructor
-  Window()
-      : _height(HEIGHT), _width(WIDTH), _resizable(false), _window(nullptr),
-        _title(TITLE) {}
-  Window(const std::string title)
-      : _height(HEIGHT), _width(WIDTH), _resizable(false), _window(nullptr),
-        _title(title) {}
+  Window() {}
+  Window(const std::string title) : _title(title) {}
   /// Explicit constructor
   Window(unsigned int height, unsigned int width, bool resizable,
          const std::string &title)
-      : _height(height), _width(width), _resizable(resizable), _window(nullptr),
-        _title(title) {}
+      : _height(height), _width(width), _resizable(resizable), _title(title) {}
   ~Window() {
     if (_window == nullptr)
       return;
