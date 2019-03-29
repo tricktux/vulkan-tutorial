@@ -13,12 +13,16 @@
 
 int main() {
   try {
-		Window window("Triangle App");
-		if (!window.init()) {
-			std::cerr << "Failed to initialize glfw window" << std::endl;
-			return 1;
-		}
+    Window window("Triangle App");
+    if (!window.init()) {
+      std::cerr << "Failed to initialize glfw window" << std::endl;
+      return 1;
+    }
 
+	while (!window.should_close())
+		window.get_poll_events();
+
+	return 0;
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;
